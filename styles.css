@@ -1,21 +1,22 @@
 html, body {
   height: 100%;
   width: 100%;
-  background-color: #f0f0f0;
+}
+
+body{
+  background: url(conference.jpg) no-repeat;
+  background-size: cover;
 }
 
 /*Styling for the container shown on the landing page */
  .landing-page {
-  /*min-width: 100%;*/
-  /* min-height: 100%; */
-  width: 100%;
-  margin-top: 7vh;
+  margin-top: 10vh;
   margin-bottom: 5vh;
 }
 
 /*Styling for the submit button to add some margin to top*/
 .book { 
-	margin:1em 0;
+	 margin:1em 0;
    position:fixed; 
    right:5rem; 
    bottom:0rem;
@@ -24,7 +25,6 @@ html, body {
    }
 
   /*page heading*/
-
   .heading{
     text-align: center;
     color: gray;

@@ -23,7 +23,7 @@ $bookings = Booking::find_all();
 <html lang="en">
 
 <head>
-  <title>QH Booking App</title>
+    <title>QH Booking App</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
@@ -33,12 +33,12 @@ $bookings = Booking::find_all();
 
 <body>
   <!-- container conaining the list of bookings -->
-  <div class="container">
+  <div class="container landing-page">
     <div class="row h-100 justify-content-center  align-items-center ">
       <div class="col-12 col-sm-6 mx-auto">
         <div class="container" style="background-color: white;">
           <br>
-          <div class="alert alert-success heading">
+          <div class="alert alert-info heading">
             <h2>Bookings For The Day</h2>
           </div>
           <?php foreach(array_reverse($bookings) as $books): ?>
