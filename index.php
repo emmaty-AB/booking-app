@@ -41,10 +41,12 @@ $bookings = Booking::find_all();
           <div class="alert alert-info heading">
             <h2>Bookings For The Day</h2>
           </div>
+
+
           <?php foreach(array_reverse($bookings) as $books): ?>
           <!-- List goes here  -->
           <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <a href="#reason" data-toggle="collapse" class="list-group-item purpose list-group-item-action flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
                 <h6><?= $books->name; ?></h6>
                 <small><?php echo $books->reason; ?></small>
