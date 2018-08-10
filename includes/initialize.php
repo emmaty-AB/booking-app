@@ -21,12 +21,16 @@ require_once(LIB_PATH.DS."functions.php");
 // Load core objects
 
 require_once(LIB_PATH.DS."database.php");
+require_once(LIB_PATH.DS."session.php");
+require_once(LIB_PATH.DS."response.php");
+require_once(LIB_PATH.DS."Listofroom.php");
+
 
 
 
 // Load database-related classes
 require_once(LIB_PATH.DS."booking.php");
+require_once(LIB_PATH.DS."user.php");
+require_once(LIB_PATH.DS."book1.php");
 
 
-
-?>

@@ -1,22 +1,35 @@
 html, body {
   height: 100%;
   width: 100%;
-}
+  }
 
 body{
-  background: url(conference.jpg) no-repeat;
+  background: linear-gradient(rgba(16, 25, 58, 0.5), rgba(16, 25, 58, 0.5)), url(qodeHub.png) no-repeat;
   background-size: cover;
 }
 
+body .alpha-bg{
+ background: rgb(0,0,0,0.5)
+}
+
+
+.btn-primary {border-color: #f89427; background-color: #f89427;}
+.btn-primary:hover, .btn-primary:active, 
+.btn-primary:visited {border-color: #f89427; background-color: #f89427;}
+
+
+
 /*Styling for the container shown on the landing page */
  .landing-page {
-  margin-top: 10vh;
+  width: 100%;
+  margin-top: 7vh;
   margin-bottom: 5vh;
+  padding: 2em;
 }
 
 /*Styling for the submit button to add some margin to top*/
 .book { 
-	 margin:1em 0;
+	margin:1em 0;
    position:fixed; 
    right:5rem; 
    bottom:0rem;
@@ -29,3 +42,110 @@ body{
     text-align: center;
     color: gray;
   }
+
+  #notes{
+    font-size: 4rem;
+    color: #fff;
+  }
+
+  .subNotes{
+    font-size: 2rem;
+    color: #fff;
+  }
+
+
+  .loginContainer{
+    background: rgba(255, 255, 255, 0.8);
+    padding: 2rem;
+    min-width: 40vw;
+    margin-left: 7rem;
+    }  
+
+    .alignment{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+.row{
+  display: flex !important;
+  flex-wrap: wrap !important;
+  margin-right: 15px;
+  }
+
+.welcome{
+  padding: 4rem;
+  border-right: 0.1rem solid white;
+  height: 40vh;
+  flex-basis: 40vw;
+}
+
+@media only screen and (max-width: 375px){
+  .welcome{
+    
+    border-right: 0;
+    margin: 0;
+    padding: 7rem;
+  }
+  #notes{
+    font-size: 2.5rem;
+  }
+  .subNotes{
+    font-size: 1.5rem;
+  }
+
+  .loginContainer{
+    max-width: 78vw;
+    margin: 0;
+  }
+}
+
+@media only screen and (min-width: 376px) and (max-width: 1024px ){
+  .welcome {
+     padding: 0; 
+    border-right: 0.1rem solid white;
+     height: 0; 
+    flex-basis: 40vw;
+}
+
+.loginContainer {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 2rem;
+    min-width: 40vw;
+    margin-left: 7rem;
+}
+} 
+
+
+.datepicker td, .datepicker th {
+    width:1.5em;
+    height: 1.5em;
+}
+
+.calendar{
+    margin-left: 1em;
+    width: 8vw;
+    margin-top: 0.3em;
+}
+
+.admin-header{
+  height: 3em;
+  display: flex;
+  justify-content: space-between;  
+  color: white;
+}
+
+a{
+  color: white;
+}
+
+a:hover{
+  color: gray;
+  text-decoration: none;
+}
+
+.reset{
+  font-style: italic;
+  color: #222;
+}

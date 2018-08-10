@@ -1,17 +1,55 @@
-<?php require_once('initialize.php'); 
+<?php
+require_once('initialize.php');
 
-class Booking {
+class User {
 
-	protected static $table_name = "qhbooking";
-	protected static $db_fields = array('id','user_id', 'name', 'reason', 'start', 'end','room' );
+	protected static $table_name = "users";
+	protected static $db_fields = array('id', 'username', 'password', 'first_name', 'last_name','reset','token' );
 	public $id;
-	public $user_id;
-	public $name;
-	public $reason;
-	public $start;
-	public $end;
-	public $room;
+	public $username;
+	public $password;
+	public $first_name;
+	public $last_name;
+	public $reset;
+	public $token;
+	public $new_password;
 
+
+	public static function authenticate($username="", $password="") {
+
+		global $database;
+		$username = $database->escape_value($username);
+		$password = $database->escape_value($password);
+		$sql  = "SELECT * FROM ".self::$table_name." ";
+		$sql .= "WHERE username = '$username' ";
+		$sql .= "AND password = '$password' ";
+		$sql .= "LIMIT 1";
+
+		$result_array = self::find_by_sql($sql);
+        return !empty($result_array) ? array_shift($result_array) : false;
+	}
+
+public static function authenticateWithtoken($id="", $token="") {
+
+		global $database;
+		$id = $database->escape_value($id);
+		$token = $database->escape_value($token);
+
+		$sql  = "SELECT * FROM ".self::$table_name." ";
+		$sql .= "WHERE id= $id ";
+		$sql .= "AND token= '$token' ";
+		$sql .= "LIMIT 1";
+
+		$result_array = self::find_by_sql($sql);
+		return !empty($result_array) ? array_shift($result_array) : false;
+	}
+	public function full_name() {
+		if(isset($this->first_name) && isset($this->last_name)) {
+			return $this->first_name. " ".$this->last_name;
+		} else {
+			return " ";
+		}
+	}
 
 	//Common Database Methods
 	public static function find_all() {
@@ -20,6 +58,11 @@ class Booking {
 
 	}
 
+	public static function find_by_id($id=0) {
+		global $database;
+		$result_array = self::find_by_sql("SELECT * FROM ".self::$table_name." WHERE id=$id LIMIT 1");
+		return !empty($result_array) ? array_shift($result_array) : false;
+	}
 
 	public static function find_by_sql($sql="") {
 		global $database;
@@ -32,7 +75,13 @@ class Booking {
 	}
 
 	
-
+	public static function count_all() {
+		global $database;
+		$sql = "SELECT COUNT(*) FROM ".self::$table_name;
+		$result_set = $database->query($sql);
+		$row = $database->fetch_array($result_set);
+		return array_shift($row);
+	}
 
 	public static function instantiate($record) {
 		// Could check that $record exists and is an array
@@ -110,14 +159,15 @@ class Booking {
 	}
 
 	public function update() {
+		
 			global $database;
 			// Don't forget your SQL syntax and good habits:
 			// - UPDATE table SET key='value', key='value' WHERE condition
-			// - single-quotes arounda l  values
+			// - single-quotes around al  values
 			// - escape all values to prevent SQL injection
 			$attributes = $this->sanitized_attributes();
 			$attribute_pairs = array();
-			foreach ($attributes as $key => $value) {
+			foreach ($$attributes as $key => $value) {
 				$attribute_pairs[] = "$key = '$value'";
 			}
 
@@ -143,14 +193,28 @@ class Booking {
 	}
 
 
-	
+	public function password_update($new_password){
+		
+			global $database;
+			// Don't forget your SQL syntax and good habits:
+			// - UPDATE table SET key='value', key='value' WHERE condition
+			// - single-quotes around al  values
+			// - escape all values to prevent SQL injection
+			$attributes = $this->sanitized_attributes();
+			$attribute_pairs = array();
+			foreach ($attributes as $key => $value) {
+				$attribute_pairs[] = "$key = '$value'";
+			}
+
+			$sql = "UPDATE users SET password = '".$new_password."' LIMIT 1";
+			$output = $database->query($sql);
+			return ($output) ? true : false;
+	}
 
 
 
 }
 
 
-
-//$new_booking = new Booking();
 
 ?>
